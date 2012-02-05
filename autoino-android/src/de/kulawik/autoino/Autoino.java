@@ -19,13 +19,10 @@ import de.kulawik.autoino.accelerometer.AccelerometerManager;
 public class Autoino extends Activity implements OnSeekBarChangeListener, AccelerometerListener {
 	private static final String DEVICE_ADDRESS = "00:11:12:05:03:96";
 	private static Context context;
-	private final int DELAY = 150;
 	SeekBar redSB;
 	Button send;
-	View colorIndicator;
 
 	int red;
-	long lastChange;
 
 	public static Context getContext() {
 		return context;
@@ -42,7 +39,6 @@ public class Autoino extends Activity implements OnSeekBarChangeListener, Accele
 
 		// get references to views defined in our main.xml layout file
 		redSB = (SeekBar) findViewById(R.id.SeekBarRed);
-		colorIndicator = findViewById(R.id.ColorIndicator);
 		send = (Button) findViewById(R.id.button1);
 
 		// register listeners
@@ -93,16 +89,16 @@ public class Autoino extends Activity implements OnSeekBarChangeListener, Accele
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-		// do not send to many updates, Arduino can't handle so much
+		/*
 		if (System.currentTimeMillis() - lastChange > DELAY) {
 			updateState(seekBar);
 			lastChange = System.currentTimeMillis();
-		}
+		}*/
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		lastChange = System.currentTimeMillis();
+
 	}
 
 	@Override
@@ -125,19 +121,14 @@ public class Autoino extends Activity implements OnSeekBarChangeListener, Accele
 	}
 
 	@Override
-	public void onAccelerationChanged(float x, float y, float z) {
-		if (System.currentTimeMillis() - lastChange > DELAY) {
-			int lr = 85 + ((int) x * -3);
-			int vh = 90 + ((int) y * -2);
+	public void onAccelerationChanged(int xx, int yy, int zz) {
+		Amarino.sendDataToArduino(this, DEVICE_ADDRESS, 's', yy);
+		Amarino.sendDataToArduino(this, DEVICE_ADDRESS, 'm', xx);
+		//Amarino.sendDataToArduino(this, DEVICE_ADDRESS, 'z', zz);
 
-			Amarino.sendDataToArduino(this, DEVICE_ADDRESS, 's', lr);
-			Amarino.sendDataToArduino(this, DEVICE_ADDRESS, 'm', vh);
+		((TextView) findViewById(R.id.x)).setText("x (servo) : " + yy);
+		((TextView) findViewById(R.id.y)).setText("y (motor) : " + xx);
+		((TextView) findViewById(R.id.z)).setText(String.valueOf(zz));
 
-			((TextView) findViewById(R.id.x)).setText(String.valueOf(lr));
-			((TextView) findViewById(R.id.y)).setText(String.valueOf(vh));
-			((TextView) findViewById(R.id.z)).setText(String.valueOf(z));
-
-			lastChange = System.currentTimeMillis();
-		}
 	}
 }

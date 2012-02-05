@@ -76,21 +76,60 @@ public class AccelerometerManager {
 	 * The listener that listen to events from the accelerometer listener
 	 */
 	private static SensorEventListener sensorEventListener = new SensorEventListener() {
-		private float x = 0;
-		private float y = 0;
-		private float z = 0;
+		private float sumX, sumY, sumZ;
+		private int count = 0;
+		private int lastXX = 0, lastYY = 0, lastZZ = 0;
+		private int NOISE = 1;
+		private long lastChange;
+		private final int DELAY = 150;
 
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		}
 
 		public void onSensorChanged(SensorEvent event) {
-			x = event.values[0];
-			y = event.values[1];
-			z = event.values[2];
+			float x = event.values[0];
+			float y = event.values[1];
+			float z = event.values[2];
 
-			listener.onAccelerationChanged(x, y, z);
+			if (System.currentTimeMillis() - lastChange > DELAY) {
+				lastChange = System.currentTimeMillis();
+
+				int xx = (int) (sumX / count * 25.6) + 255;
+				int yy = (int) (sumY / count * 25.6) + 255;
+				int zz = (int) (sumZ / count * 25.6) + 255;
+				if (xx > 511) xx = 511;
+				if (yy > 511) yy = 511;
+				if (zz > 511) zz = 511;
+				if (xx < 0) xx = 0;
+				if (yy < 0) yy = 0;
+				if (zz < 0) zz = 0;
+
+				float deltaX = Math.abs(lastXX - xx);
+				float deltaY = Math.abs(lastYY - yy);
+				float deltaZ = Math.abs(lastZZ - zz);
+				if (deltaX > NOISE || deltaY > NOISE || deltaZ > NOISE) {
+					lastXX = xx;
+					lastYY = yy;
+					lastZZ = zz;
+					sumX = 0;
+					sumY = 0;
+					sumZ = 0;
+					count = 0;
+
+					xx = xx / 2;
+					yy = yy / 2;
+					zz = zz / 2;
+					listener.onAccelerationChanged(xx, yy, zz);
+				}
+
+			} else {
+				sumX += x;
+				sumY += y;
+				sumZ += z;
+				count++;
+			}
+
 		}
-
 	};
 
 }
