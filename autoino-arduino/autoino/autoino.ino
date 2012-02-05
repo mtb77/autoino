@@ -15,7 +15,6 @@ LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
 
 void setup() {  
   lcd.begin(16, 2); 
-  debug("Starting Autoino - Race Car");
   
   Serial.begin(115200);  
   myservo.attach(3);   
