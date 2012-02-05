@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	android:background="#cdcdcd">
+
+	<View
+	    android:id="@+id/ColorIndicator"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_gravity="center"
+	    android:layout_weight="0.59" >
+
+	</View>
+	
+	<LinearLayout
+		android:layout_width="fill_parent" 
+		android:orientation="vertical" 
+		android:gravity="center" 
+		android:layout_height="0dp" 
+		android:layout_weight="2">
+		
+		<LinearLayout
+			android:layout_width="fill_parent" 
+			android:layout_weight="1" 
+			android:layout_height="0dp" 
+			android:background="#f00" 
+			android:paddingRight="10dp">
+			
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="@string/red" 
+				android:layout_width="fill_parent"
+				android:layout_weight="4"
+				android:layout_gravity="center" 
+				android:gravity="center" 
+				android:textColor="#000">
+			</TextView>
+	
+			<SeekBar android:id="@+id/SeekBarRed" 
+				android:layout_width="fill_parent" 
+				android:layout_weight="1" 
+				android:layout_height="wrap_content" 
+				android:max="255" 
+				android:layout_gravity="center" 
+				android:minHeight="50dp" 
+				android:thumbOffset="4px" 
+				android:thumb="@drawable/btn_square_overlay_normal" 
+				android:progressDrawable="@drawable/progress_horizontal">
+			</SeekBar>
+
+		</LinearLayout>
+
+		<LinearLayout
+		    android:id="@+id/linearLayout1"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" >
+
+			<EditText
+			    android:id="@+id/editText1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_weight="4" />
+
+			<Button
+			    android:id="@+id/button1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_weight="1"
+			    android:text="Send" />
+
+		</LinearLayout>
+
+		<TextView
+		    android:id="@+id/x"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+				android:textColor="#000"
+		    android:text="TextView" />
+
+		<TextView
+		    android:id="@+id/y"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+				android:textColor="#000"
+		    android:text="TextView" />
+
+		<TextView
+		    android:id="@+id/z"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+				android:textColor="#000"
+		    android:text="TextView" />
+
+	</LinearLayout>
+
+</LinearLayout>
