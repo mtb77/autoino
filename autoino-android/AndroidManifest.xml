@@ -8,6 +8,8 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="10" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:debuggable="true"
         android:icon="@drawable/icon"

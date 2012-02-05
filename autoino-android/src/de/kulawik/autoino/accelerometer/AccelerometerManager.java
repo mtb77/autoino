@@ -81,7 +81,7 @@ public class AccelerometerManager {
 		private int lastXX = 0, lastYY = 0, lastZZ = 0;
 		private int NOISE = 1;
 		private long lastChange;
-		private final int DELAY = 150;
+		private final int DELAY = 100;
 
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		}

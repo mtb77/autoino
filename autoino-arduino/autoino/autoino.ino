@@ -19,8 +19,8 @@ void setup() {
   Serial.begin(115200);  
   myservo.attach(3);   
   mymotor.attach(5);     
-  motor(85);
-  servo(85);
+  motor(90);
+  servo(90);
   meetAndroid.registerFunction(red, 'o'); 
   meetAndroid.registerFunction(debugString, 'd'); 
   meetAndroid.registerFunction(androidMotor, 'm'); 
@@ -93,11 +93,13 @@ void debugString(byte flag, byte numOfValues) {
 }
 
 void androidServo(byte flag, byte numOfValues) {
-  servo(meetAndroid.getInt());
+  int s = map(meetAndroid.getInt(), 44, 212, 55, 125);
+  servo(s);
 }
 
 void androidMotor(byte flag, byte numOfValues) {
-  motor(meetAndroid.getInt());
+  int s = map(meetAndroid.getInt(), 0, 255, 110, 70 );
+  motor(s);
 }
 
 void servo(int val) {
