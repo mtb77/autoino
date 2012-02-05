@@ -7,7 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import de.kulawik.autoino.Autoino;
+import de.kulawik.autoino.AutoinoActivity;
 
 public class AccelerometerManager {
 	private static Sensor sensor;
@@ -46,8 +46,8 @@ public class AccelerometerManager {
 	 */
 	public static boolean isSupported() {
 		if (supported == null) {
-			if (Autoino.getContext() != null) {
-				sensorManager = (SensorManager) Autoino.getContext().getSystemService(Context.SENSOR_SERVICE);
+			if (AutoinoActivity.getContext() != null) {
+				sensorManager = (SensorManager) AutoinoActivity.getContext().getSystemService(Context.SENSOR_SERVICE);
 				List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 				supported = new Boolean(sensors.size() > 0);
 			} else {
@@ -63,7 +63,7 @@ public class AccelerometerManager {
 	 *             callback for accelerometer events
 	 */
 	public static void startListening(AccelerometerListener accelerometerListener) {
-		sensorManager = (SensorManager) Autoino.getContext().getSystemService(Context.SENSOR_SERVICE);
+		sensorManager = (SensorManager) AutoinoActivity.getContext().getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 		if (sensors.size() > 0) {
 			sensor = sensors.get(0);

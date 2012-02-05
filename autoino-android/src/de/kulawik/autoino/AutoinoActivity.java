@@ -16,7 +16,7 @@ import at.abraxas.amarino.Amarino;
 import de.kulawik.autoino.accelerometer.AccelerometerListener;
 import de.kulawik.autoino.accelerometer.AccelerometerManager;
 
-public class Autoino extends Activity implements OnSeekBarChangeListener, AccelerometerListener {
+public class AutoinoActivity extends Activity implements OnSeekBarChangeListener, AccelerometerListener {
 	private static final String DEVICE_ADDRESS = "00:11:12:05:03:96";
 	private static Context context;
 	SeekBar redSB;
@@ -38,7 +38,7 @@ public class Autoino extends Activity implements OnSeekBarChangeListener, Accele
 		Amarino.connect(this, DEVICE_ADDRESS);
 
 		// get references to views defined in our main.xml layout file
-		redSB = (SeekBar) findViewById(R.id.SeekBarRed);
+		redSB = (SeekBar) findViewById(R.id.bar);
 		send = (Button) findViewById(R.id.button1);
 
 		// register listeners
@@ -108,7 +108,7 @@ public class Autoino extends Activity implements OnSeekBarChangeListener, Accele
 
 	private void updateState(final SeekBar seekBar) {
 		switch (seekBar.getId()) {
-			case R.id.SeekBarRed:
+			case R.id.bar:
 				red = seekBar.getProgress();
 				updateRed();
 				break;

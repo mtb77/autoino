@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Autoino</string>
-    <string name="red">Red</string> 
+    <string name="red">Red</string>
+    <string name="police">Polizei</string> 
 </resources>
