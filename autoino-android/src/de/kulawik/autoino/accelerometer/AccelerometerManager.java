@@ -91,9 +91,12 @@ public class AccelerometerManager {
 			float y = event.values[1];
 			float z = event.values[2];
 
+			// we just want to send updates after 150ms 
 			if (System.currentTimeMillis() - lastChange > DELAY) {
 				lastChange = System.currentTimeMillis();
 
+				// get the values which have been gathered in that time, create an avg value
+				// and normalize the values in a range between 0-511
 				int xx = (int) (sumX / count * 25.6) + 255;
 				int yy = (int) (sumY / count * 25.6) + 255;
 				int zz = (int) (sumZ / count * 25.6) + 255;
@@ -104,6 +107,8 @@ public class AccelerometerManager {
 				if (yy < 0) yy = 0;
 				if (zz < 0) zz = 0;
 
+				// check the delta and verify the noise. If the value has been changed
+				// more then the noise, send the update to the listener
 				float deltaX = Math.abs(lastXX - xx);
 				float deltaY = Math.abs(lastYY - yy);
 				float deltaZ = Math.abs(lastZZ - zz);
@@ -115,7 +120,7 @@ public class AccelerometerManager {
 					sumY = 0;
 					sumZ = 0;
 					count = 0;
-
+					// normalize again to 0-255
 					xx = xx / 2;
 					yy = yy / 2;
 					zz = zz / 2;
@@ -123,6 +128,7 @@ public class AccelerometerManager {
 				}
 
 			} else {
+				// just summarize
 				sumX += x;
 				sumY += y;
 				sumZ += z;

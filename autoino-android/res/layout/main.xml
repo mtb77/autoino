@@ -16,7 +16,6 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#f00"
             android:paddingRight="10dp" >
 
             <TextView
@@ -41,6 +40,12 @@
                 android:thumb="@drawable/btn_square_overlay_normal"
                 android:thumbOffset="4px" >
             </SeekBar>
+
+            <com.nikola.despotoski.verticalseekbar.VerticalSeekbar
+                android:id="@+id/bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
         <LinearLayout
