@@ -5,7 +5,6 @@
 Servo myservo;  
 Servo mymotor;   
 int pos = 0;     
-
 String command;
 String value;
 char mode;
@@ -30,7 +29,7 @@ void setup() {
 
 void loop() {   
   meetAndroid.receive(); 
-  /*
+  /* TEST
   if(Serial.available() > 0) {
     char serial = Serial.read(); 
     
