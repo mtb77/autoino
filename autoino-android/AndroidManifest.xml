@@ -3,7 +3,7 @@
     package="de.kulawik.autoino"
     android:versionCode="1"
     android:versionName="1.0" >
-
+	<!-- old sdk -->
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="10" />
