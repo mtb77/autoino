@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1969be_c0ff3b00",
+        "filename": "autoino-android/project.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003748
+      },
+      "writtenOn": "2015-02-10T12:17:06Z",
+      "side": 0,
+      "message": "What`",
+      "revId": "d49d89db6e881eae0980908b87e5ada2e18853a0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
