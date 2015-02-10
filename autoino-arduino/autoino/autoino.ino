@@ -29,7 +29,7 @@ void setup() {
 
 void loop() {   
   meetAndroid.receive(); 
-  /* TEST
+  /* 
   if(Serial.available() > 0) {
     char serial = Serial.read(); 
     
